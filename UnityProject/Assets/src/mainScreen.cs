@@ -3,17 +3,12 @@ using System.Collections;
 
 public class mainScreen : MonoBehaviour {
 
-	public string connectionIP = "127.0.0.1";
+	public string connectionIP = "192.168.43.43";
 	public int connectionPort = 25001;
 
 	// Use this for initialization
 	void Start() {
 		Application.runInBackground = true ;
-	}
-
-	// Update is called once per frame
-	void Update() {
-
 	}
 
 	void OnGUI() {

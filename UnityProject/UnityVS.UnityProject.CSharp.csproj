@@ -60,11 +60,12 @@
     <Compile Include="Assets\Scripts\Prova.cs" />
     <Compile Include="Assets\Scripts\ProvaTouch.cs" />
     <Compile Include="Assets\Scripts\ProvaTouchLine.cs" />
-    <Compile Include="Assets\src\authSpawning.cs" />
-    <Compile Include="Assets\src\authPlayer.cs" />
+    <Compile Include="Assets\src\client\authPlayer.cs" />
+    <Compile Include="Assets\src\client\cl_spawn.cs" />
+    <Compile Include="Assets\src\server\authServer.cs" />
+    <Compile Include="Assets\src\server\sv_spawn.cs" />
     <Compile Include="Assets\src\mainScreen.cs" />
-    <Compile Include="Assets\src\player.cs" />
-    <Compile Include="Assets\src\spawning.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

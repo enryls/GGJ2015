@@ -50,11 +50,11 @@
      <Compile Include="Assets\Scripts\Prova.cs" />
      <Compile Include="Assets\Scripts\ProvaTouch.cs" />
      <Compile Include="Assets\Scripts\ProvaTouchLine.cs" />
-     <Compile Include="Assets\src\authPlayer.cs" />
-     <Compile Include="Assets\src\authSpawning.cs" />
+     <Compile Include="Assets\src\client\authPlayer.cs" />
+     <Compile Include="Assets\src\client\cl_spawn.cs" />
      <Compile Include="Assets\src\mainScreen.cs" />
-     <Compile Include="Assets\src\player.cs" />
-     <Compile Include="Assets\src\spawning.cs" />
+     <Compile Include="Assets\src\server\authServer.cs" />
+     <Compile Include="Assets\src\server\sv_spawn.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Programmi86/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
