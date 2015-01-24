@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class authPlayer : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class authPlayer : MonoBehaviour {
 	//data actually changed.
 	float lastClientHInput = 0f;
 	float lastClientVInput = 0f;
+	Vector3 lastMousePos = Vector3.zero;
+
 
 	void Awake() {
 		if (Network.isServer)
@@ -56,7 +59,7 @@ public class authPlayer : MonoBehaviour {
 		}
 
 		//Check if this update applies for the current client
-		if (theOwner != null && Network.player == theOwner) {
+		/*if ((theOwner != null) && Network.player == theOwner) {
 			float HInput = Input.GetAxis("Horizontal");
 			float VInput = Input.GetAxis("Vertical");
 			if (lastClientHInput != HInput || lastClientVInput != VInput) {
@@ -66,10 +69,59 @@ public class authPlayer : MonoBehaviour {
 				//Send update
 				networkView.RPC("updateClientMotion", RPCMode.Server, HInput, VInput);
 			}
+		}*/
+
+		if ((theOwner == null) || Network.player != theOwner)
+			return;
+		
+		if (Input.GetMouseButtonUp(0)) {
+			networkView.RPC("stopDrawing", RPCMode.Server);
+		}
+
+		Vector3 mousePos = Input.mousePosition;
+		mousePos.z = Camera.main.nearClipPlane;
+
+		if (Input.GetMouseButtonDown(0)) {
+			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePos);
+
+			networkView.RPC("startDrawing", RPCMode.Server, mouseWorld);
+		} else if (Input.GetMouseButton(0)) {
+			//LeftClick
+			if (mousePos != lastMousePos) {
+				lastMousePos = mousePos;
+				Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePos);
+
+				networkView.RPC("lineDrawing", RPCMode.Server, mouseWorld);
+			}
+		}
+
+		foreach (NetworkViewID instance in lol.Keys) {
+
+			if (lol[instance].Count > 0) {
+				//Get the line from the line array
+				Transform t = lineDict[instance];
+				LineRenderer currentRenderer = t.GetComponent<LineRenderer>();
+
+				if (!linePointsDict.ContainsKey(instance)) {
+					linePointsDict.Add(instance, new List<Vector3>());
+				}
+
+				//Debug.Log("ASD " + instance);
+
+				int lastLineSize = linePointsDict[instance].Count;
+				linePointsDict[instance].AddRange(lol[instance]);
+				lol[instance].Clear();
+				currentRenderer.SetVertexCount(linePointsDict[instance].Count);
+
+				for (int i = lastLineSize; i < linePointsDict[instance].Count; i++) {
+					currentRenderer.SetPosition(i, linePointsDict[instance][i]);
+				}
+			}
 		}
 	}
 
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
+		Debug.Log(info.ToString());
 		if (stream.isWriting) {
 			Vector3 pos = transform.position;
 			stream.Serialize(ref pos);
@@ -79,4 +131,9 @@ public class authPlayer : MonoBehaviour {
 			transform.position = posReceive;
 		}
 	}
+
+	Dictionary<NetworkViewID, List<Vector3>> linePointsDict = new Dictionary<NetworkViewID, List<Vector3>>();
+	public static Dictionary<NetworkViewID, List<Vector3>> lol = new Dictionary<NetworkViewID, List<Vector3>>();
+
+	public static Dictionary<NetworkViewID, Transform> lineDict = new Dictionary<NetworkViewID, Transform>();
 }

@@ -50,8 +50,11 @@
      <Compile Include="Assets\Scripts\Prova.cs" />
      <Compile Include="Assets\Scripts\ProvaTouch.cs" />
      <Compile Include="Assets\Scripts\ProvaTouchLine.cs" />
+     <Compile Include="Assets\Scripts\lineRenderer.cs" />
+     <Compile Include="Assets\Scripts\render.cs" />
      <Compile Include="Assets\src\client\authPlayer.cs" />
      <Compile Include="Assets\src\client\cl_spawn.cs" />
+     <Compile Include="Assets\src\client\lineScript.cs" />
      <Compile Include="Assets\src\mainScreen.cs" />
      <Compile Include="Assets\src\server\authServer.cs" />
      <Compile Include="Assets\src\server\sv_spawn.cs" />

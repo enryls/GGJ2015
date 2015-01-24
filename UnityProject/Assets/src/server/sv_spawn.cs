@@ -36,7 +36,6 @@ public class sv_spawn : MonoBehaviour {
 			Debug.Log("Checking player " + spawn.guid);
 
 			if (spawn == requester) { //That is the one, lets make him an entity!
-				int num = int.Parse(spawn + "");
 				Transform handle = (Transform)Network.Instantiate(
 													playerPrefab,
 													transform.position,
