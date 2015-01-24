@@ -136,7 +136,7 @@ public class authPlayer : MonoBehaviour {
 		}
 	}
 
-	Dictionary<NetworkViewID, List<Vector3>> linePointsDict = new Dictionary<NetworkViewID, List<Vector3>>();
+	public Dictionary<NetworkViewID, List<Vector3>> linePointsDict = new Dictionary<NetworkViewID, List<Vector3>>();
 	public static Dictionary<NetworkViewID, updateLineElement> lol = new Dictionary<NetworkViewID, updateLineElement>();
 
 	public static Dictionary<NetworkViewID, Transform> lineDict = new Dictionary<NetworkViewID, Transform>();

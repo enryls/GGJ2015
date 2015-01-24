@@ -8,13 +8,13 @@ public class sv_spawn : MonoBehaviour {
 
 	public readonly int maxPlayers = 3;
 
-	private List<authPlayer> playerTracker = new List<authPlayer>();
-	private List<NetworkPlayer> scheduledSpawns = new List<NetworkPlayer>();
+	public List<authPlayer> playerTracker = new List<authPlayer>();
+	public List<NetworkPlayer> scheduledSpawns = new List<NetworkPlayer>();
 
 	private bool processSpawnRequests = false;
 
 	public Transform playerPrefab;
-	private int usedColors = 0;
+	public int usedColors = 0;
 
 	void OnPlayerConnected(NetworkPlayer player){
 		if (playerTracker.Count > maxPlayers) {
@@ -88,17 +88,4 @@ public class sv_spawn : MonoBehaviour {
 		}
 	}
 
-	/*void SpawnPlayer(NetworkPlayer player) {
-		string tempPlayerString = player.ToString();
-		int playerNumber = Convert.ToInt32(tempPlayerString);
-
-		Transform newPlayerTransform = (Transform)Network.Instantiate(
-			playerPrefab, transform.position, transform.rotation, playerNumber);
-
-		//playerScripts.Add(newPlayerTransform.GetComponent("cubeMoveAuthoritative"));
-
-
-		NetworkView theNetworkView = newPlayerTransform.networkView;
-		theNetworkView.RPC("setOwner", RPCMode.AllBuffered, player);
-	}*/
 }
