@@ -7,16 +7,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3514E80D-D975-03C0-3350-1935D6E531E2}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Web v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebPlayer:6</UnityBuildTarget>
     <UnityVersion>4.6.1f1</UnityVersion>
@@ -65,9 +63,12 @@
     <Compile Include="Assets\src\client\authPlayer.cs" />
     <Compile Include="Assets\src\client\cl_spawn.cs" />
     <Compile Include="Assets\src\client\lineScript.cs" />
+    <Compile Include="Assets\src\client\updateLineElement.cs" />
+    <Compile Include="Assets\src\colors.cs" />
     <Compile Include="Assets\src\mainScreen.cs" />
     <Compile Include="Assets\src\server\authServer.cs" />
     <Compile Include="Assets\src\server\sv_spawn.cs" />
+    <Compile Include="Assets\src\utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ public class authPlayer : MonoBehaviour {
 	//That's actually not the owner but the player,
 	//the server instantiated the prefab for, where this script is attached
 	public NetworkPlayer theOwner;
+	public colors playerColor = colors.none;
 
 	//Those are stored to only send RPCs to the server when the 
 	//data actually changed.
@@ -97,7 +98,7 @@ public class authPlayer : MonoBehaviour {
 
 		foreach (NetworkViewID instance in lol.Keys) {
 
-			if (lol[instance].Count > 0) {
+			if (lol[instance].pointsList.Count > 0) {
 				//Get the line from the line array
 				Transform t = lineDict[instance];
 				LineRenderer currentRenderer = t.GetComponent<LineRenderer>();
@@ -106,11 +107,14 @@ public class authPlayer : MonoBehaviour {
 					linePointsDict.Add(instance, new List<Vector3>());
 				}
 
-				//Debug.Log("ASD " + instance);
+				Debug.Log("ASD " + instance + " " + lol[instance].pointsColor);
 
 				int lastLineSize = linePointsDict[instance].Count;
-				linePointsDict[instance].AddRange(lol[instance]);
-				lol[instance].Clear();
+				linePointsDict[instance].AddRange(lol[instance].pointsList);
+				lol[instance].pointsList.Clear();
+
+				Color c = utils.getColor(lol[instance].pointsColor);
+				currentRenderer.SetColors(c, c);
 				currentRenderer.SetVertexCount(linePointsDict[instance].Count);
 
 				for (int i = lastLineSize; i < linePointsDict[instance].Count; i++) {
@@ -133,7 +137,7 @@ public class authPlayer : MonoBehaviour {
 	}
 
 	Dictionary<NetworkViewID, List<Vector3>> linePointsDict = new Dictionary<NetworkViewID, List<Vector3>>();
-	public static Dictionary<NetworkViewID, List<Vector3>> lol = new Dictionary<NetworkViewID, List<Vector3>>();
+	public static Dictionary<NetworkViewID, updateLineElement> lol = new Dictionary<NetworkViewID, updateLineElement>();
 
 	public static Dictionary<NetworkViewID, Transform> lineDict = new Dictionary<NetworkViewID, Transform>();
 }

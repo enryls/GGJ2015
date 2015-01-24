@@ -55,9 +55,12 @@
      <Compile Include="Assets\src\client\authPlayer.cs" />
      <Compile Include="Assets\src\client\cl_spawn.cs" />
      <Compile Include="Assets\src\client\lineScript.cs" />
+     <Compile Include="Assets\src\client\updateLineElement.cs" />
+     <Compile Include="Assets\src\colors.cs" />
      <Compile Include="Assets\src\mainScreen.cs" />
      <Compile Include="Assets\src\server\authServer.cs" />
      <Compile Include="Assets\src\server\sv_spawn.cs" />
+     <Compile Include="Assets\src\utils.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Programmi86/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

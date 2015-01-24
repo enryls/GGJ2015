@@ -27,8 +27,21 @@ public class authServer : MonoBehaviour {
 			return;
 
 		if (lineStored.Count > 0) {
+
+			lineScript sc = currentLine.GetComponent<lineScript>();
+			if (!sc) {
+				Debug.LogError("The prefab has no lineScript attached!");
+			}
+
+			colors tempColor = sc.lineColor;
+			if (Random.Range(0.0f, 1.0f) > 0.2f) {
+				tempColor = colors.green;
+				Debug.Log("GREEN");
+			}
+			//TODO Color mixing!
+
 			NetworkView netView = currentLine.GetComponent<NetworkView>();
-			netView.RPC("updateLine", RPCMode.AllBuffered, currentLine.networkView.viewID, lineStored.ToArray());
+			netView.RPC("updateLine", RPCMode.AllBuffered, currentLine.networkView.viewID, lineStored.ToArray(), (int)tempColor);
 
 			int lastLineSize = linePoints.Count;
 			linePoints.AddRange(lineStored);
@@ -64,9 +77,23 @@ public class authServer : MonoBehaviour {
 												mouseWorld,
 												Quaternion.identity,
 												2);//temp
-		//Debug.Log("Down Mouse");
+
+		lineScript sc = currentLine.GetComponent<lineScript>();
+		if (!sc) {
+			Debug.LogError("The prefab has no lineScript attached!");
+		}
+
+		//Reset the renderer size
 		currentRenderer = currentLine.gameObject.GetComponent<LineRenderer>();
 		currentRenderer.SetVertexCount(0);
+
+
+		//Set the line color!
+		authPlayer ap = networkView.GetComponent<authPlayer>();
+		sc.lineColor = ap.playerColor;
+
+		Color c = utils.getColor(sc.lineColor);
+		currentRenderer.SetColors(c,c);
 	}
 
 	[RPC]

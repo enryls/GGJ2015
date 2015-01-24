@@ -20,7 +20,5 @@ public class ExampleClass : MonoBehaviour {
 			lineRenderer.SetPosition(i, pos);
 			i++;
 		}
-
-		//lineRenderer.
 	}
 }

@@ -6,14 +6,22 @@ using System.Collections.Generic;
 public class sv_spawn : MonoBehaviour {
 	public static string levelName = "networkScene";
 
+	public readonly int maxPlayers = 3;
+
 	private List<authPlayer> playerTracker = new List<authPlayer>();
 	private List<NetworkPlayer> scheduledSpawns = new List<NetworkPlayer>();
 
 	private bool processSpawnRequests = false;
 
 	public Transform playerPrefab;
+	private int usedColors = 0;
 
 	void OnPlayerConnected(NetworkPlayer player){
+		if (playerTracker.Count > maxPlayers) {
+			//TODO force disconnect
+			return;
+		}
+
 		Debug.Log("Spawning prefab for new client");
 		scheduledSpawns.Add(player);
 		processSpawnRequests = true;
@@ -45,6 +53,10 @@ public class sv_spawn : MonoBehaviour {
 				if (!sc) {
 					Debug.LogError("The prefab has no authPlayer attached!");
 				}
+
+				//Set the player color!
+				sc.playerColor = (colors)(++usedColors);
+				
 				playerTracker.Add(sc);
 				//Get the network view of the player and add its owner
 				NetworkView netView = handle.GetComponent<NetworkView>();
@@ -69,8 +81,10 @@ public class sv_spawn : MonoBehaviour {
 				Network.Destroy(man.gameObject);
 			}
 		}
+
 		if (found) {
 			playerTracker.Remove(found);
+			--usedColors;
 		}
 	}
 
