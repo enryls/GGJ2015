@@ -21,4 +21,19 @@ public class lineScript : MonoBehaviour {
 
 		authPlayer.lol[instance] = new updateLineElement(tempStored, tc);
 	}
+
+	List<Vector3> Position;
+	public void SetPosition(List<Vector3> position) {
+		Position = position;
+	}
+
+	public List<Vector3> getPosition() {
+		return Position;
+	}
+
+
+	[RPC]
+	public void addCollider(NetworkViewID instance, Vector3[] tempStored) {
+		utils.addCollider(new List<Vector3>(tempStored));
+	}
 }

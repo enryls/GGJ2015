@@ -35,7 +35,7 @@ public class authPlayer : MonoBehaviour {
 			enabled = true;
 		} else {
 			//Disable a bunch of other things here that are not interesting:
-			if (GetComponent<Camera>()) {
+			/*if (GetComponent<Camera>()) {
 				GetComponent<Camera>().enabled = false;
 			}
 
@@ -45,7 +45,7 @@ public class authPlayer : MonoBehaviour {
 
 			if (GetComponent<GUILayer>()) {
 				GetComponent<GUILayer>().enabled = false;
-			}
+			}*/
 		}
 	}
 
@@ -80,7 +80,7 @@ public class authPlayer : MonoBehaviour {
 		}
 
 		Vector3 mousePos = Input.mousePosition;
-		mousePos.z = Camera.main.nearClipPlane;
+		mousePos.z = Camera.main.nearClipPlane; // utils.globalZ;//
 
 		if (Input.GetMouseButtonDown(0)) {
 			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePos);
@@ -107,7 +107,7 @@ public class authPlayer : MonoBehaviour {
 					linePointsDict.Add(instance, new List<Vector3>());
 				}
 
-				Debug.Log("ASD " + instance + " " + lol[instance].pointsColor);
+				//Debug.Log("ASD " + instance + " " + lol[instance].pointsColor);
 
 				int lastLineSize = linePointsDict[instance].Count;
 				linePointsDict[instance].AddRange(lol[instance].pointsList);

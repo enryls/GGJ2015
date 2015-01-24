@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\ProvaTouchLine.cs" />
      <Compile Include="Assets\Scripts\lineRenderer.cs" />
      <Compile Include="Assets\Scripts\render.cs" />
+     <Compile Include="Assets\src\Minion.cs" />
      <Compile Include="Assets\src\client\authPlayer.cs" />
      <Compile Include="Assets\src\client\cl_spawn.cs" />
      <Compile Include="Assets\src\client\lineScript.cs" />

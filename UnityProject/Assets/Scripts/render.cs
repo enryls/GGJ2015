@@ -30,7 +30,7 @@ public class render : MonoBehaviour {
 				ob = new GameObject();
 
 				Vector3 mouse = Input.mousePosition;
-				mouse.z = thisCamera.nearClipPlane;
+				mouse.z = utils.globalZ;
 				Vector3 mouseW = thisCamera.ScreenToWorldPoint(mouse);
 
 				ob.transform.position = mouse;  // posiziono l' oggetto nel punto in cui clicco
@@ -45,7 +45,7 @@ public class render : MonoBehaviour {
 				newLine = true;
 			}
 			Vector3 mousePos = Input.mousePosition;
-			mousePos.z = thisCamera.nearClipPlane;
+			mousePos.z = utils.globalZ;
 			Vector3 mouseWorld = thisCamera.ScreenToWorldPoint(mousePos);
 
 			float dist = Vector3.Distance(lastPos, mouseWorld);
