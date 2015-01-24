@@ -34,6 +34,6 @@ public class lineScript : MonoBehaviour {
 
 	[RPC]
 	public void addCollider(NetworkViewID instance, Vector3[] tempStored) {
-		utils.addCollider(new List<Vector3>(tempStored));
+		utils.addCollider(gameObject,new List<Vector3>(tempStored));
 	}
 }

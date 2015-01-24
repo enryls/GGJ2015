@@ -7,6 +7,7 @@ public class Minion : MonoBehaviour {
 	bool run = false;
 	int i = 0;
 	bool inCD = false;
+	bool end = false;
 	public enum color {
 		Red = 0, blue = 1, yellow = 2
 
@@ -20,13 +21,23 @@ public class Minion : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
-		if (run) {
+		if (run && i<linePoints.Count) {
 
 			Debug.Log("enemy");
 			transform.position = new Vector3(linePoints[i].x * 3f, (linePoints[i].y + 0.02f) * 3f, 1f);
 			i++;
 			StartCoroutine(onCOOL());
 		}
+		/*
+	    if (run) 
+		{
+		if (i >= linePoints.Count && !end) 
+			{
+					gameObject.rigidbody2D.gravityScale = 1f;
+			}
+
+		}
+		*/
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
@@ -40,6 +51,7 @@ public class Minion : MonoBehaviour {
 
 		if (line.lineColor == colors.red) {
 			linePoints = line.getPosition();
+			i=0;
 			run = true;
 		} else
 			run = false;

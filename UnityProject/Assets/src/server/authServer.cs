@@ -113,7 +113,7 @@ public class authServer : MonoBehaviour {
 		ls.SetPosition(linePoints);
 
 
-		utils.addCollider(linePoints);
+		utils.addCollider(currentLine.gameObject,linePoints);
 
 		NetworkView netView = currentLine.GetComponent<NetworkView>();
 		netView.RPC("addCollider", RPCMode.AllBuffered, currentLine.networkView.viewID, linePoints.ToArray());
