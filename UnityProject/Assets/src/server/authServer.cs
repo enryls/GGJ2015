@@ -140,7 +140,7 @@ public class authServer : MonoBehaviour {
 			return;
 		}
 		Vector3 pos = spawns[0].renderer.bounds.center;
-		pos.z = Camera.main.nearClipPlane; //utils.globalZ;
+		//pos.z = Camera.main.nearClipPlane; //utils.globalZ;
 
 		pos.y += spawns[0].renderer.bounds.size.y / 2;
 		pos.x += spawns[0].renderer.bounds.size.x / 2;
