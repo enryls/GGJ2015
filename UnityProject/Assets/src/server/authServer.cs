@@ -147,10 +147,25 @@ public class authServer : MonoBehaviour {
 		pos.y += spawns[0].renderer.bounds.size.y / 2;
 		pos.x += spawns[0].renderer.bounds.size.x / 2;
 
+		Object prefabToInst = minionPrefab;
+
+		int choosenSpawn = Random.Range(1, 3);
+		switch (choosenSpawn) {
+			case 1:
+				prefabToInst = redPrefab;
+				break;
+			case 2 :
+				prefabToInst = bluePrefab;
+				break;
+			case 3:
+				prefabToInst = yellowPrefab;
+				break;
+			default: break;
+		}
 
 
 		Transform currentMinion = (Transform)Network.Instantiate(
-											bluePrefab,
+											prefabToInst,
 											pos,
 											Quaternion.identity,
 											2);//temp
@@ -159,7 +174,7 @@ public class authServer : MonoBehaviour {
 	private bool coolDownSpawn = false;
 	IEnumerator onCOOL() {
 		coolDownSpawn = true;
-		yield return new WaitForSeconds(10.0f);
+		yield return new WaitForSeconds(5.0f);
 		coolDownSpawn = false;
 	}
 }
