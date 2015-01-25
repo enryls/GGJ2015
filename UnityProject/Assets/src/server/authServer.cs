@@ -126,6 +126,8 @@ public class authServer : MonoBehaviour {
 	public Transform linePrefab;
 	List<Vector3> linePoints;
 	public Transform minionPrefab;
+	public Transform bluePrefab;
+	public Transform yellowPrefab;
 	//int lastLineSize;
 
 	[RPC]
