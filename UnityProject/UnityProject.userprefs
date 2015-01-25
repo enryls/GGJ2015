@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\src\server\authServer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\src\mainScreen.cs">
     <Files>
-      <File FileName="Assets\src\server\authServer.cs" Line="130" Column="32" />
+      <File FileName="Assets\src\mainScreen.cs" Line="65" Column="1" />
+      <File FileName="..\..\..\GGJ15Prove\Prova2\UnityProject\Assets\src\mainScreen.cs" Line="65" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
