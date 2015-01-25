@@ -19,7 +19,7 @@ public class utils {
 
 		BX.size = new Vector2(0.1f, 0.1f);
 
-		BX.center = new Vector2(linePoints[0].x + gm.transform.position.x, linePoints[0].y + gm.transform.position.y);
+		BX.center = new Vector2(linePoints[0].x - gm.transform.position.x, linePoints[0].y + gm.transform.position.y);
 
 		/*
 		GameObject collinf = new GameObject();
@@ -28,7 +28,7 @@ public class utils {
 		BoxCollider2D BXf = gm.AddComponent<BoxCollider2D>();
 		BXf.size = new Vector2(0.1f, 0.1f);
 
-		BXf.center = new Vector2(linePoints[linePoints.Count - 1].x + gm.transform.position.x, linePoints[linePoints.Count - 1].y + gm.transform.position.y);
+		BXf.center = new Vector2(linePoints[linePoints.Count - 1].x - gm.transform.position.x, linePoints[linePoints.Count - 1].y + gm.transform.position.y);
 	}
 
 	public static Color getColor(colors inCol) {

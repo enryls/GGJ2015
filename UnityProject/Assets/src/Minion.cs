@@ -53,7 +53,7 @@ public class Minion : MonoBehaviour {
 
 		if (line.lineColor == colors.red) {
 			linePoints = line.getPosition();
-			i=0;
+			//i=0;
 			run = true;
 		}
 
