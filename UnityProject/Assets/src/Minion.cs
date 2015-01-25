@@ -21,12 +21,14 @@ public class Minion : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
-		if (run && i<linePoints.Count) {
+		if (run && !inCD) {
 
-			//Debug.Log("enemy");
-			transform.position = new Vector3(linePoints[i].x * 3f, (linePoints[i].y + 0.02f) * 3f, 1f);
-			i++;
-			StartCoroutine(onCOOL());
+			if (i < linePoints.Count) {
+				transform.position = new Vector3(linePoints[i].x * 3f, (linePoints[i].y + 0.02f) * 3f, 1f);
+
+				i++;
+				StartCoroutine(onCOOL());
+			}
 		}
 		/*
 	    if (run) 
@@ -53,8 +55,7 @@ public class Minion : MonoBehaviour {
 			linePoints = line.getPosition();
 			i=0;
 			run = true;
-		} else
-			run = false;
+		}
 
 	}
 

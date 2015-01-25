@@ -23,13 +23,14 @@ public class authServer : MonoBehaviour {
 		if (Network.isClient)
 			return;
 
-		if (linePoints == null)
-			return;
-
-		if (!hasSpawned && Network.connections.Length > 0) {
+		if (!hasSpawned && sv_spawn.canSpawn) {
 			spawnMinion();
 			hasSpawned = true;
 		}
+
+		if (linePoints == null)
+			return;
+
 		//if (coolDownSpawn == false) {
 		//	spawnMinion();
 		//	StartCoroutine(onCOOL());
@@ -133,14 +134,21 @@ public class authServer : MonoBehaviour {
 	}
 
 	public void spawnMinion() {
-			Vector3 mousePos = Vector3.zero;
-			mousePos.z = Camera.main.nearClipPlane; //utils.globalZ;
+		GameObject[] spawns = GameObject.FindGameObjectsWithTag("Respawn");
+		if (spawns.Length <=  0) {
+			return;
+		}
+		Vector3 pos = spawns[0].renderer.bounds.center;
+		pos.z = Camera.main.nearClipPlane; //utils.globalZ;
 
-			Transform currentMinion = (Transform)Network.Instantiate(
-												minionPrefab,
-												mousePos,
-												Quaternion.identity,
-												2);//temp
+		pos.y += spawns[0].renderer.bounds.size.y / 2;
+		pos.x += spawns[0].renderer.bounds.size.x / 2;
+
+		Transform currentMinion = (Transform)Network.Instantiate(
+											minionPrefab,
+											pos,
+											Quaternion.identity,
+											2);//temp
 	}
 
 	private bool coolDownSpawn = false;

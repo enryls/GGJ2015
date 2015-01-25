@@ -16,6 +16,8 @@ public class sv_spawn : MonoBehaviour {
 	public Transform playerPrefab;
 	public int usedColors = 0;
 
+	public static bool canSpawn = false;
+
 	void OnPlayerConnected(NetworkPlayer player){
 		if (playerTracker.Count > maxPlayers) {
 			//TODO force disconnect
@@ -25,6 +27,9 @@ public class sv_spawn : MonoBehaviour {
 		Debug.Log("Spawning prefab for new client");
 		scheduledSpawns.Add(player);
 		processSpawnRequests = true;
+
+		if (!canSpawn)
+			canSpawn = true;
 	}
 
 	[RPC]
@@ -86,6 +91,9 @@ public class sv_spawn : MonoBehaviour {
 			playerTracker.Remove(found);
 			--usedColors;
 		}
+
+		if (playerTracker.Count <= 0)
+			canSpawn = false;
 	}
 
 }
