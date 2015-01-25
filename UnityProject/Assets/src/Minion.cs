@@ -28,7 +28,8 @@ public class Minion : MonoBehaviour {
 
 				i++;
 				StartCoroutine(onCOOL());
-			}
+			} else
+				StartCoroutine(onEnd());
 		}
 		/*
 	    if (run) 
@@ -43,13 +44,18 @@ public class Minion : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
+
+		if (other.gameObject.tag == "Finish") {
+			end = true;
+			gameObject.SetActive(false);
+			return;
+		}
+
 		lineScript line = other.gameObject.GetComponent<lineScript>();
 		if (line == null) {
 			//No line but minion
 			return;
 		}
-
-		//Debug.Log("lineea");
 
 		if (line.lineColor == colors.red) {
 			linePoints = line.getPosition();
@@ -63,5 +69,11 @@ public class Minion : MonoBehaviour {
 		inCD = true;
 		yield return new WaitForSeconds(0.10f);
 		inCD = false;
+	}
+
+	IEnumerator onEnd() {
+		yield return new WaitForSeconds(0.5f);
+		if (!end)
+			gameObject.rigidbody2D.gravityScale = 1;
 	}
 }
