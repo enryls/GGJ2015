@@ -9,7 +9,7 @@ public class ExampleClass : MonoBehaviour {
 		LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
 		lineRenderer.SetColors(c1, c2);
-		lineRenderer.SetWidth(0.2F, 0.2F);
+		lineRenderer.SetWidth(2F, 2F);
 		lineRenderer.SetVertexCount(lengthOfLineRenderer);
 	}
 	void Update() {

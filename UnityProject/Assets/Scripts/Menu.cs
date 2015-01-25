@@ -14,6 +14,6 @@ public class Menu : MonoBehaviour {
 	}
 	void OnMouseUp(){
 		if (isStart)
-			Application.LoadLevel ("Prova");
+			Application.LoadLevel ("Connessione");
 	}
 }

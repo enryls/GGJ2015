@@ -6,7 +6,7 @@ public class cl_spawn : MonoBehaviour {
 	void OnConnectedToServer() {
 		Debug.Log("Disabling message queue!");
 		Network.isMessageQueueRunning = false;
-		Application.LoadLevel(0);
+		Application.LoadLevel ("networkScene");
 	}
 
 	void OnLevelWasLoaded(int level) {

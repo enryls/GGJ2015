@@ -23,7 +23,7 @@ public class Minion : MonoBehaviour {
 
 		if (run && i<linePoints.Count) {
 
-			Debug.Log("enemy");
+			//Debug.Log("enemy");
 			transform.position = new Vector3(linePoints[i].x * 3f, (linePoints[i].y + 0.02f) * 3f, 1f);
 			i++;
 			StartCoroutine(onCOOL());
@@ -47,7 +47,7 @@ public class Minion : MonoBehaviour {
 			return;
 		}
 
-		Debug.Log("lineea");
+		//Debug.Log("lineea");
 
 		if (line.lineColor == colors.red) {
 			linePoints = line.getPosition();

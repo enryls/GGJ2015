@@ -127,6 +127,7 @@ public class authPlayer : MonoBehaviour {
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 		Debug.Log(info.ToString());
 		if (stream.isWriting) {
+			//potrebbe essere quì il problema??
 			Vector3 pos = transform.position;
 			stream.Serialize(ref pos);
 		} else {

@@ -16,9 +16,11 @@ public class mainScreen : MonoBehaviour {
 			GUI.Label(new Rect(10, 10, 300, 20), "Status: Disconnected");
 			if (GUI.Button(new Rect(10, 30, 120, 20), "Client Connect")) {
 				Network.Connect(connectionIP, connectionPort);
+				Application.LoadLevel("networkScene");
 			}
 			if (GUI.Button(new Rect(10, 50, 120, 20), "Initialize Server")) {
 				Network.InitializeServer(32, connectionPort, false);
+				Application.LoadLevel("networkScene");
 			}
 			if (GUI.Button(new Rect(10, 70, 120, 20), "Reset")) {
 				var objects = GameObject.FindObjectsOfType<GameObject>();
