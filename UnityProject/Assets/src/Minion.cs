@@ -99,6 +99,6 @@ public class Minion : MonoBehaviour {
 
 	void kill() {
 		Network.RemoveRPCs(transform.networkView.viewID);
-		//Network.Destroy(transform.gameObject);
+		Network.Destroy(transform.gameObject);
 	}
 }
