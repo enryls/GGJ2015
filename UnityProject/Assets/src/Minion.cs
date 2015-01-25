@@ -9,20 +9,20 @@ public class Minion : MonoBehaviour {
 	bool inCD = false;
 	bool end = false;
 	bool down = false;
-	public enum color {
-		Red = 0, blue = 1, yellow = 2
 
-	};
-	private color minionColor;
-	// Use this for initialization
-	void Start() {
-		minionColor = color.Red;
+	private colors minionColor;
+
+	public void setColor(colors color) {
+		minionColor = color;
 	}
 
 	// Update is called once per frame
 	void Update() {
 
 		if (run && !inCD) {
+
+			if (linePoints == null)
+				return;
 
 			if (i < linePoints.Count) {
 				transform.position = new Vector3(linePoints[i].x * 3f, (linePoints[i].y + 0.02f) * 3f, 1f);
@@ -47,6 +47,7 @@ public class Minion : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D other) {
 
 		if (other.gameObject.tag == "Finish" && run) {
+			Debug.Log("kill");
 			end = true;
 			gameObject.SetActive(false);
 			kill();
@@ -59,7 +60,7 @@ public class Minion : MonoBehaviour {
 			return;
 		}
 
-		if (line.lineColor == colors.red) {
+		if (line.lineColor == minionColor) {
 			linePoints = line.getPosition();
 			//i=0;
 			run = true;
@@ -67,19 +68,19 @@ public class Minion : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		//Debug.Log("lineea");
-		if (down && other.gameObject.tag == "line" && !run) {
-			gameObject.rigidbody2D.gravityScale = 0f;
-			lineScript line = other.gameObject.GetComponent<lineScript>();
-			if (line.lineColor == colors.red) {
-				linePoints = line.getPosition();
-				i = 0;
-				run = true;
-				down = false;
-			}
-		}
-	}
+	//void OnTriggerEnter2D(Collider2D other) {
+	//	//Debug.Log("lineea");
+	//	if (down && other.gameObject.tag == "line" && !run) {
+	//		gameObject.rigidbody2D.gravityScale = 0f;
+	//		lineScript line = other.gameObject.GetComponent<lineScript>();
+	//		if (line.lineColor == minionColor) {
+	//			linePoints = line.getPosition();
+	//			i = 0;
+	//			run = true;
+	//			down = false;
+	//		}
+	//	}
+	//}
 
 	IEnumerator onCOOL() {
 		inCD = true;
@@ -99,6 +100,6 @@ public class Minion : MonoBehaviour {
 
 	void kill() {
 		Network.RemoveRPCs(transform.networkView.viewID);
-		Network.Destroy(transform.gameObject);
+		//Network.Destroy(transform.gameObject);
 	}
 }

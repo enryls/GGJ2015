@@ -147,28 +147,31 @@ public class authServer : MonoBehaviour {
 		pos.y += spawns[0].renderer.bounds.size.y / 2;
 		pos.x += spawns[0].renderer.bounds.size.x / 2;
 
-		Object prefabToInst = minionPrefab;
+		Transform prefabToInst = minionPrefab;
 
-		int choosenSpawn = Random.Range(1, 3);
+		colors choosenSpawn = (colors)Random.Range(1, 4);
 		switch (choosenSpawn) {
-			case 1:
+			case colors.red:
 				prefabToInst = redPrefab;
 				break;
-			case 2 :
+			case colors.blue:
 				prefabToInst = bluePrefab;
 				break;
-			case 3:
+			case colors.yellow:
 				prefabToInst = yellowPrefab;
 				break;
 			default: break;
 		}
 
-
+		//prefabToInst.GetComponent<Minion>().setColor((colors)choosenSpawn);
 		Transform currentMinion = (Transform)Network.Instantiate(
 											prefabToInst,
 											pos,
 											Quaternion.identity,
 											2);//temp
+
+		currentMinion.GetComponent<Minion>().setColor((colors)choosenSpawn);
+		
 	}
 
 	private bool coolDownSpawn = false;
