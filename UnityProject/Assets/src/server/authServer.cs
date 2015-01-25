@@ -7,7 +7,7 @@ public class authServer : MonoBehaviour {
 	float serverCurrentHInput = 0f;
 	float serverCurrentVInput = 0f;
 	List<Vector3> lineStored = new List<Vector3>();
-	bool hasSpawned = false;
+	//bool hasSpawned = false;
 	//LineRenderer ren;
 
 	void Start() {
@@ -23,18 +23,19 @@ public class authServer : MonoBehaviour {
 		if (Network.isClient)
 			return;
 
-		if (!hasSpawned && sv_spawn.canSpawn) {
+		
+		/*if (!hasSpawned && sv_spawn.canSpawn) {
 			spawnMinion();
 			hasSpawned = true;
-		}
+		}*/
 
 		if (linePoints == null)
 			return;
 
-		//if (coolDownSpawn == false) {
-		//	spawnMinion();
-		//	StartCoroutine(onCOOL());
-		//}
+		if (sv_spawn.canSpawn && coolDownSpawn == false) {
+			spawnMinion();
+			StartCoroutine(onCOOL());
+		}
 
 		if (lineStored.Count > 0) {
 

@@ -8,6 +8,7 @@ public class Minion : MonoBehaviour {
 	int i = 0;
 	bool inCD = false;
 	bool end = false;
+	bool down = false;
 	public enum color {
 		Red = 0, blue = 1, yellow = 2
 
@@ -45,9 +46,10 @@ public class Minion : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other) {
 
-		if (other.gameObject.tag == "Finish") {
+		if (other.gameObject.tag == "Finish" && run) {
 			end = true;
 			gameObject.SetActive(false);
+			kill();
 			return;
 		}
 
@@ -65,6 +67,20 @@ public class Minion : MonoBehaviour {
 
 	}
 
+	void OnTriggerEnter2D(Collider2D other) {
+		//Debug.Log("lineea");
+		if (down && other.gameObject.tag == "line" && !run) {
+			gameObject.rigidbody2D.gravityScale = 0f;
+			lineScript line = other.gameObject.GetComponent<lineScript>();
+			if (line.lineColor == colors.red) {
+				linePoints = line.getPosition();
+				i = 0;
+				run = true;
+				down = false;
+			}
+		}
+	}
+
 	IEnumerator onCOOL() {
 		inCD = true;
 		yield return new WaitForSeconds(0.10f);
@@ -73,7 +89,16 @@ public class Minion : MonoBehaviour {
 
 	IEnumerator onEnd() {
 		yield return new WaitForSeconds(0.5f);
-		if (!end)
+		if (!end) {
 			gameObject.rigidbody2D.gravityScale = 1;
+			down = true;
+			run = false;
+		}
+	}
+
+
+	void kill() {
+		Network.RemoveRPCs(transform.networkView.viewID);
+		//Network.Destroy(transform.gameObject);
 	}
 }
