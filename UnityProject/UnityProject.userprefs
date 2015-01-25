@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\GGJ15Prove\UnityProject\Assets\src\authPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\src\Minion.cs">
     <Files>
-      <File FileName="..\..\..\GGJ15Prove\UnityProject\Assets\src\authPlayer.cs" Line="33" Column="28" />
+      <File FileName="Assets\src\Minion.cs" Line="87" Column="6" />
+      <File FileName="Assets\src\utils.cs" Line="1" Column="1" />
+      <File FileName="d:\ggj2015\GGJ2015\UnityProject\Assets\src\server\authServer.cs" Line="1" Column="1" />
+      <File FileName="Assets\src\client\lineScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
